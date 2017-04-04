@@ -48,18 +48,18 @@ a = ones(1, n_osc) * 20;            % Convergence factor
 
 % Coupling weights
 % SET THE COUPLING WEIGHTS OF THE CPG
-w_axis_downwards = ;              % from axial oscillators to caudal neighbors
-w_axis_upwards = ;                % from axial oscillators to rostral neighbors
-w_axis_contralateral = ;          % from axial oscillator to neighbor on other side
-w_limb_axis = ;                   % from limb to axial oscillators
-w_limb_limb = ;                   % between two limb oscillators
+w_axis_downwards = 2;              % from axial oscillators to caudal neighbors
+w_axis_upwards = 2;                % from axial oscillators to rostral neighbors
+w_axis_contralateral = 6;          % from axial oscillator to neighbor on other side
+w_limb_axis = 4;                   % from limb to axial oscillators
+w_limb_limb = 1;                   % between two limb oscillators
 
 % Phase biases, expressed in radians
 % SET THE PHASE BIASES IN THE NETWORK
 
-phi_axis_downwards = ; % head-to-tail wave: positive phi_ij for descending couplings
-phi_axis_upwards = ;  % head-to-tail-wave: negative phi_ij for ascending couplings
-phi_limb_axis = ;                       % phase difference bewteen limb and axis oscillators
+phi_axis_downwards = pi/3; % head-to-tail wave: positive phi_ij for descending couplings
+phi_axis_upwards = -pi/3;  % head-to-tail-wave: negative phi_ij for ascending couplings
+phi_limb_axis = pi;                       % phase difference bewteen limb and axis oscillators
 
 % Indices for oscillator groups
 axis_left = 1:n_segments;
