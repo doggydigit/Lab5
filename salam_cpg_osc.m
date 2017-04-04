@@ -56,7 +56,6 @@ w_limb_limb = 1;                   % between two limb oscillators
 
 % Phase biases, expressed in radians
 % SET THE PHASE BIASES IN THE NETWORK
-
 phi_axis_downwards = pi/3; % head-to-tail wave: positive phi_ij for descending couplings
 phi_axis_upwards = -pi/3;  % head-to-tail-wave: negative phi_ij for ascending couplings
 phi_limb_axis = pi;                       % phase difference bewteen limb and axis oscillators
@@ -152,9 +151,9 @@ for i = 2:length(times)
     
     % ADD HERE RANDOMNESS OR PERTURBATIONS TO THE STATE VARIABLES IN THE
     % MIDDLE OF THE TIME WINDOW. QUESTION 7.B
-    %     if i > length(times)/2
-    %           theta(i - 1, :) = ;
-    %     end
+    if i > length(times)/2
+        theta(i - 1, :) = ;
+    end
     
     
     % dtheta is the instantaneous frequency and is part of the output,
