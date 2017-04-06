@@ -1,4 +1,4 @@
-function plot_salam_cpg(times, x, dtheta, drives)
+function plot_salam_cpg(times, x, dtheta, drives, sigma)
 % plot_salam_cpg(times, x, dtheta, drives)
 %
 % Plot the oscillator outputs and instantaneous frequencies of a model of
@@ -18,9 +18,15 @@ function plot_salam_cpg(times, x, dtheta, drives)
     drives = drives(:); % indexing with (:) ensures we have a column vector
   end
 
+  nrsubplots = 5;
+  plotsigma = false;
+  if nargin == 5
+      nrsubplots = 6;
+      plotsigma = true;
+  end
   
   % Make figure with given title
-  figure('name', 'Salamander CPG output');
+  FigHandle = figure('name', 'Salamander CPG output');
   clf;
   
   % Colors from Tango palette
@@ -37,7 +43,7 @@ function plot_salam_cpg(times, x, dtheta, drives)
 
   % First subplot: axial oscillations
   % Using two rows to make it twice the height of the other plots
-  subplot(5, 1, [1 2]);
+  subplot(nrsubplots, 1, [1 2]);
   
   % Calculate matrix of vertical offsets to have a "stack" of oscillations.
   step = 3; % separation between 2 oscillations
@@ -54,7 +60,7 @@ function plot_salam_cpg(times, x, dtheta, drives)
   ylabel('x Body');
 
   % Limb oscillations
-  subplot(5, 1, 3);
+  subplot(nrsubplots, 1, 3);
   step = 4;
   offsets = [2 * step, step];
   hold on;
@@ -70,7 +76,7 @@ function plot_salam_cpg(times, x, dtheta, drives)
   
   
   % Instantaneous frequencies
-  subplot(5, 1, 4);
+  subplot(nrsubplots, 1, 4);
   freqs = dtheta / (2 * pi); % /2pi to convert rad/s to Hz
   plot(times, freqs, 'color', 'black');
   ylabel('Freq [Hz]');
@@ -79,10 +85,24 @@ function plot_salam_cpg(times, x, dtheta, drives)
   
   
   % Drive
-  subplot(5, 1, 5);
+  subplot(nrsubplots, 1, 5);
   plot(times, drives, 'color', 'black');
-  ylabel('Drive d');
-  xlabel('Time [s]');
+  ylabel('Drive d');  
+  if plotsigma 
+      set(gca, 'xtick', []);
+  else
+      xlabel('Time [s]');
+  end
+  
+  % Gaussian noise sigma
+  if plotsigma 
+      subplot(nrsubplots, 1, 6);  
+      plot(times,sigma, 'color', 'k');
+      ylabel('Noise σ');  
+      xlabel('Time [s]');
+      set(FigHandle, 'Position', [100, 100, 1049, 895]);
+  end
+
   
   print -dpng salam_cpg.png
   

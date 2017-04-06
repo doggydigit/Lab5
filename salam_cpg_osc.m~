@@ -49,9 +49,9 @@ a = ones(1, n_osc) * 20;            % Convergence factor
 
 % Coupling weights
 % SET THE COUPLING WEIGHTS OF THE CPG
-w_axis_downwards = 0.5;              % from axial oscillators to caudal neighbors
-w_axis_upwards = 0.5;                % from axial oscillators to rostral neighbors
-w_axis_contralateral = 1;          % from axial oscillator to neighbor on other side
+w_axis_downwards = 2;              % from axial oscillators to caudal neighbors
+w_axis_upwards = 2;                % from axial oscillators to rostral neighbors
+w_axis_contralateral = 6;          % from axial oscillator to neighbor on other side
 w_limb_axis = 4;                   % from limb to axial oscillators
 w_limb_limb = 1;                   % between two limb oscillators
 
@@ -156,9 +156,9 @@ for i = 2:length(times)
     
     % ADD HERE RANDOMNESS OR PERTURBATIONS TO THE STATE VARIABLES IN THE
     % MIDDLE OF THE TIME WINDOW. QUESTION 7.B
-    %if i > starttime
-    %    theta(i - 1, 4) = normrnd(theta(i-1,4), sigma(i+1-starttime));
-    %end
+    if i > starttime
+        theta(i - 1, 9) = normrnd(theta(i-1,17), sigma(i+1-starttime));
+    end
     %if i == round(length(times)/2)
     %    theta(i-1,:) = -theta0;
     %end
