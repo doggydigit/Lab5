@@ -80,19 +80,27 @@ function plot_salam_cpg(times, x, dtheta, drives, sigma)
   freqs = dtheta / (2 * pi); % /2pi to convert rad/s to Hz
   plot(times, freqs, 'color', 'black');
   ylabel('Freq [Hz]');
+  legend('Resulting frequencies','Location','southeast');
   set(gca, 'xtick', []);
   ylim([0 1.5]);
   
   
   % Drive
+%   subplot(nrsubplots, 1, 5);
+%   plot(times, drives, 'color', 'black');
+%   ylabel('Drive d');  
+%   if plotsigma 
+%       set(gca, 'xtick', []);
+%   else
+%       xlabel('Time [s]');
+%   end
+  
+  % intrinsic frequencies
   subplot(nrsubplots, 1, 5);
-  plot(times, drives, 'color', 'black');
-  ylabel('Drive d');  
-  if plotsigma 
-      set(gca, 'xtick', []);
-  else
-      xlabel('Time [s]');
-  end
+  plot([0,6], [0.5,0.5;0.5,0.4*6]);
+  legend('Intrinsic limb frequency','Intrinsic axial frequency','Location','southeast');
+  ylabel('Freq [Hz]');
+  xlabel('Time [s]');
   
   % Gaussian noise sigma
   if plotsigma 

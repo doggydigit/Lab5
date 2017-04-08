@@ -12,13 +12,16 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage[skip=3pt, format=plain]{caption}
 \renewcommand\thesection{\Alph{section}}
+%\usepackage{multicol}
 
 \title{Computational Motor Control - Lab 5}
 \subtitle{Modelling the salamander CPG with phase oscillators}
 \author{Florian Kaufmann \and Octave Martin \and Matthias Tsai}
 
 \begin{document}
-\twocolumn
+
+{\twocolumn
+
 \setlength{\columnsep}{0.5cm}
 \maketitle
 
@@ -91,7 +94,7 @@ The simulation in walking mode was repeated, but applying the perturbation on a 
 
 \begin{figure}[h]
 	\includegraphics[width=0.5\textwidth]{fig/figure7b_limbphase.png}
-	\caption{Simulations of the salamander CPG model applying a perturbation on an upper limb oscillator starting at 10 seconds into the simulation with a linearly increasing perturbation variance from 0 to 0.9.}
+	\caption{Simulation of the salamander CPG model applying a perturbation on an upper limb oscillator starting at 10 seconds into the simulation with a linearly increasing perturbation variance from 0 to 0.9.}
 	\label{fig:7b-limbphase}
 \end{figure}
 
@@ -127,26 +130,52 @@ To also visualize the individual role of the coupling strength of the limbs on t
 
 \begin{figure}[!h]
 	\includegraphics[width=0.5\textwidth]{fig/figure7c_limbaxial-coupling.png}
-	\vspace*{-1.5cm}
+	\vspace*{-1.5 cm}
 	\caption{Simulations of the salamander CPG model applying a constant drive of 2 to achieve walking with three different values for the coupling strength of the limbs on the axial oscillators (0, 1 and 4).}
 	\label{fig:7c-limbaxialcoupling}
 \end{figure}
+
+\begin{figure}[!h]
+	\includegraphics[width=0.5\textwidth]{fig/figure7c_limb-coupling.png}
+	\vspace*{-1.5 cm}
+	\caption{Simulations of the salamander CPG model applying a constant drive of 2 to achieve walking with two different values for the coupling strength between the limb oscillators (0 or 1).}
+	\label{fig:7c-limbcoupling}
+\end{figure}
+
+} %twoclumn
+
+
+\begin{figure*}[!b]
+	\includegraphics[width=\textwidth]{fig/figure7c_axialfreq.png}
+	\caption{Simulations of the salamander CPG model applying a constant drive of 2 to achieve walking with two different values for the coupling strength between the limb oscillators (0 or 1).}
+	\label{fig:7c-axialfreq}
+\end{figure}
+
+%\begin{multicols}{2}
+
+
 
 {\setlength{\parindent}{0 cm}
 of 1 they produce a messy motion between swimming and walking. However, with a strong coupling strength of 4 the limbs can finally exert a sufficient influence to force the axial oscillator to tune into a clean walking motion.
 }
 
-Finally, the limb to limb coupling was investigated using a constant drive of 2 to produce walking ( see figure \ref{fig:7c-limbcoupling}). This showed that the anti-phase dynamic between upper and lower limbs was lost in case of a low or non-existent limb coupling. Indeed the phase difference between the upper and lower limb was completely random and only depended on the initialization values of the system.
+The limb to limb coupling was investigated in a similar way, also using a constant drive of 2 to produce walking (see figure \ref{fig:7c-limbcoupling}). This showed that the anti-phase dynamic between upper and lower limbs was lost in case of a low or non-existent limb coupling. Indeed the phase difference between the upper and lower limb was completely random and only depended on the initialization values of the system.
 
-\begin{figure}[!h]
-	\includegraphics[width=0.5\textwidth]{fig/figure7c_limb-coupling.png}
-	\vspace*{-1.5cm}
-	\caption{Simulations of the salamander CPG model applying a constant drive of 2 to achieve walking with two different values for the coupling strength between the limb oscillators (0 or 1).}
-	\label{fig:7c-limbcoupling}
+The next step of this section is dedicated to investigating the role of the intrinsic frequencies associated to the limb and axial oscillators. This was studied by simulating the whole system and linearly increasing the intrinsic frequency of the axial oscillators while keeping the limbs' intrinsic frequencies constant (see figure \ref{fig:7c-axialfreq}). One can observe that 2 seconds into the simulation the intrinsic frequency of the axial oscillators has already rose so much that the coupling with the limb oscillators can't contain it any more and the synchronization is lost. This is leads to a turbulent oscillation of the axial oscillators until the intrinsic axial frequency has risen to the point, at which it can seemingly decouple from the limb oscillation and the swimming dynamic starts to dominate the motion of the axial oscillators. This takeover of the intrinsic swimming motion kicks in around 4 seconds into the simulation. 
+
+In a last step the axial contralateral coupling was also modulated. Until yet the whole analysis had \newpage only taken place on the left half of the salamander model, but the coupling between the left and right axial oscillators also plays a relevant role. If assigned to a significant value, for instance 1, this coupling strength will assure that contralateral axial oscillators should be in anti-phase. However, if it this set to zero this is no longer true as was shown by simulation using a linearly decreasing drive from 5 to 0 in order to initialize the system in swimming mode and then transit to walking (see figure \ref{fig:7c-leftright}). One can observe that in this simulation the axial oscillators have a random phase difference that depends on the initial conditions while the model is in swimming mode. However, when the drive reaches a value of 3 and the system tunes into walking mode, the intrinsic phase difference of the limbs oscillators forces contralateral limbs to be in antiphase and this dynamic is transmitted to the axial oscillators through the limb to axial oscillators coupling. This results into the contralateral axial oscillators to also assume an antipahse dynamic in synchrony with the limb oscillators.
+
+\begin{figure*}[!b]
+	\includegraphics[width=\textwidth]{fig/figure7c_left-right-coupling.png}
+	\caption{Simulation of the salamander CPG model applying a linearly decreasing drive from 5 to 0 in order to initialize the system in swimming mode and then transit into walking. The contralateral axial oscillator coupling strength is equal to zero.}
+	\label{fig:7c-leftright}
 \end{figure}
+
 
 \section{Discussion of the model}
 
 \section{Extensions and alternatives}
+
+%\end{multicols}
 
 \end{document}

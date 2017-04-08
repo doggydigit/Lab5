@@ -51,7 +51,7 @@ a = ones(1, n_osc) * 20;            % Convergence factor
 % SET THE COUPLING WEIGHTS OF THE CPG
 w_axis_downwards = 0.5;              % from axial oscillators to caudal neighbors
 w_axis_upwards = 0.5;                % from axial oscillators to rostral neighbors
-w_axis_contralateral = 1;          % from axial oscillator to neighbor on other side
+w_axis_contralateral = 0;          % from axial oscillator to neighbor on other side
 w_limb_axis = 4;                   % from limb to axial oscillators
 w_limb_limb = 1;                   % between two limb oscillators
 
@@ -123,6 +123,17 @@ PHI = zeros(n_osc);
     0.2, 0, ...       % c_nu_1, c_nu_0
     0.131, 1.131, ... % c_R_1, c_R_0
     0, 0);            % nu_sat, R_sat
+% [nu_axis, R_axis] = saturation_function(drives, ...
+%     0, 6, ...         % d_low, d_high
+%     0.4, 0.5, ...     % c_nu_1, c_nu_0
+%     0, 1, ... % c_R_1, c_R_0
+%     0, 0);            % nu_sat, R_sat
+% 
+% [nu_limbs, R_limbs] = saturation_function(drives, ...
+%     0, 6, ...         % d_low, d_high
+%     0, 0.5, ...       % c_nu_1, c_nu_0
+%     0, 1, ... % c_R_1, c_R_0
+%     0, 0);            % nu_sat, R_sat
 
 % nu and R are matrices with one row per timestep, one column per oscillator
 nu(:, axis_indices) = repmat(nu_axis, 1, length(axis_indices));

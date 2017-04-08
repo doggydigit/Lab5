@@ -4,16 +4,27 @@ function plot_saturation_function
 % to use the same values as in salam_cpg_oscil
 
 dr=[0: 0.01: 6];
+% [nu_axis, R_axis] = saturation_function(dr, ...
+%     1, 5, ...         % d_low, d_high
+%     0.2, 0.3, ...     % c_nu_1, c_nu_0
+%     0.065, 1.196, ... % c_R_1, c_R_0
+%     0, 0);            % nu_sat, R_sat
+% 
+% [nu_limbs, R_limbs] = saturation_function(dr, ...
+%     1, 3, ...         % d_low, d_high
+%     0.2, 0, ...       % c_nu_1, c_nu_0
+%     0.131, 1.131, ... % c_R_1, c_R_0
+%     0, 0);    
 [nu_axis, R_axis] = saturation_function(dr, ...
-    1, 5, ...         % d_low, d_high
-    0.2, 0.3, ...     % c_nu_1, c_nu_0
-    0.065, 1.196, ... % c_R_1, c_R_0
+    0, 6, ...         % d_low, d_high
+    0.4, 0.5, ...     % c_nu_1, c_nu_0
+    0, 1, ... % c_R_1, c_R_0
     0, 0);            % nu_sat, R_sat
 
 [nu_limbs, R_limbs] = saturation_function(dr, ...
-    1, 3, ...         % d_low, d_high
-    0.2, 0, ...       % c_nu_1, c_nu_0
-    0.131, 1.131, ... % c_R_1, c_R_0
+    0, 6, ...         % d_low, d_high
+    0, 0.5, ...       % c_nu_1, c_nu_0
+    0, 1, ... % c_R_1, c_R_0
     0, 0);            % nu_sat, R_sat
 
 % Make figure with given title
@@ -48,6 +59,3 @@ non_saturated = d_low <= d & d <= d_high;
 % Calculate non saturated values
 nu(non_saturated) = c_nu_1 * d(non_saturated) + c_nu_0;
 R(non_saturated) = c_R_1 * d(non_saturated) + c_R_0;
-
-
-
