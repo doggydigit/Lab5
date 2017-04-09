@@ -145,7 +145,7 @@ To also visualize the individual role of the coupling strength of the limbs on t
 } %twoclumn
 
 
-\begin{figure*}[!b]
+\begin{figure}[!b]
 	\includegraphics[width=\textwidth]{fig/figure7c_axialfreq.png}
 	\caption{Simulations of the salamander CPG model applying a constant drive of 2 to achieve walking with two different values for the coupling strength between the limb oscillators (0 or 1).}
 	\label{fig:7c-axialfreq}
@@ -165,16 +165,26 @@ The next step of this section is dedicated to investigating the role of the intr
 
 In a last step the axial contralateral coupling was also modulated. Until yet the whole analysis had \newpage only taken place on the left half of the salamander model, but the coupling between the left and right axial oscillators also plays a relevant role. If assigned to a significant value, for instance 1, this coupling strength will assure that contralateral axial oscillators should be in anti-phase. However, if it this set to zero this is no longer true as was shown by simulation using a linearly decreasing drive from 5 to 0 in order to initialize the system in swimming mode and then transit to walking (see figure \ref{fig:7c-leftright}). One can observe that in this simulation the axial oscillators have a random phase difference that depends on the initial conditions while the model is in swimming mode. However, when the drive reaches a value of 3 and the system tunes into walking mode, the intrinsic phase difference of the limbs oscillators forces contralateral limbs to be in antiphase and this dynamic is transmitted to the axial oscillators through the limb to axial oscillators coupling. This results into the contralateral axial oscillators to also assume an antipahse dynamic in synchrony with the limb oscillators.
 
-\begin{figure*}[!b]
+\begin{figure}[!b]
 	\includegraphics[width=\textwidth]{fig/figure7c_left-right-coupling.png}
 	\caption{Simulation of the salamander CPG model applying a linearly decreasing drive from 5 to 0 in order to initialize the system in swimming mode and then transit into walking. The contralateral axial oscillator coupling strength is equal to zero.}
 	\label{fig:7c-leftright}
 \end{figure}
 
-
 \section{Discussion of the model}
 
+We saw during the previous chapters that the model describes well a salamender during a walking and a swiming state. The transition from walking to swiming is smooth and the model is overall resistant to noise which is a good thing because in reality perturbations are everywhere. Two examples to illustrate noise could be the roughness of the ground in walking state and the current flow in water during swiming. 
+
+The drive is applied on both front and back limbs which is in my oppinion a limitation. One can imagine a salamender trying to climb out of the water. With our model, the salamender would try to climb to the surface either by swiming or walking. A better solution in some case could be walking with front limbs to the ground and swiming with the back ones in the water which is something we can't do with our model. 
+
+
 \section{Extensions and alternatives}
+
+The first possible extension could be to add a limite in high frequency to the swiming motion regardless to the drive input. This way, even if the drive goes higher than 5, the salamender would keep swiming and not sink straight to the bottom since it is what our current model does.
+
+Conserning the way the neuronals oscillators are controlled by the drive, someone could also separate the front and back limbs with two different controller in order to help the salamender going out of the water as we began to describe it in the previous chapter.
+
+There is in my opinion an other limitation conserning the walking state and someone could imaginate a new extension to our model. Most animals in nature need to run to escape from predators. Our salamender can only perform one way of walking and his speed is limited by the frequency at which the salamender switch from walking to swiming. Its maximum speed is kind of slow and from looking on wikipedia, one can read that some predators of the salamender are mammals. One can imagine adding an extra state while on ground one could call runing state where the salamender could move at higher frequency using a different oscillation state. For example, one could add some rigidity to the body and lowering its oscillations in order to allow the limbs to run at higher frequency without switching to swiming which cause the limbs to stop.
 
 %\end{multicols}
 
